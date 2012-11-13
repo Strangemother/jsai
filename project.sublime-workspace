@@ -1,0 +1,243 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"compl",
+				"complete_percent"
+			],
+			[
+				"percent",
+				"percent_cache"
+			],
+			[
+				"percen",
+				"percent_cache"
+			],
+			[
+				"arg",
+				"arguments"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
+			],
+			[
+				"diff",
+				"Git: Diff Current File"
+			],
+			[
+				"add",
+				"Git: Add Current File"
+			],
+			[
+				"cancel",
+				"SFTP: Cancel Upload"
+			],
+			[
+				"sync de",
+				"SFTP: Sync Both Directions…"
+			],
+			[
+				"git",
+				"Package Control: Install Package"
+			],
+			[
+				"dis",
+				"Package Control: Discover Packages"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"nav",
+				"Sublime Files: Open Navigator"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/incident/css/reports-live.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/views.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/incident/report-live.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/qa27/settings.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/models.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/urls.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/report-live.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/manage.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/githistory/templates/githistory/index.html",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/utils/__init__.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/githistory/views.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/templates/incident/dashboard.html",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/githistory/static/githistory/css/index.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/templates/incident/list.html",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/css/style.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/css/list.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/js/script.js",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/docs/notes.",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/images/svg/login.svg",
+		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/qa27/context.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/test",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/sftp-config.json",
+		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/User/SFTP.sublime-settings",
+		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/SFTP/SFTP.sublime-settings"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"000000"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true
+}
