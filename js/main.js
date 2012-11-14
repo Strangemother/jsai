@@ -9,7 +9,8 @@ poolVal = function(def, min, max){
     return {
         def: def,
         min: min,
-        max: max
+        max: max,
+        random: getRandomArbitary(min, max)
     }
 }
 
@@ -39,47 +40,77 @@ genePool = {
 world_data = {
     fagents: [],
     agents: [
-        {
-            mass: genePool.mass.def,
-            maxSpeed: genePool.maxSpeed.def,
-            minSpeed: genePool.minSpeed.def,
-            motorSpeed: genePool.motorSpeed.def,
-            lifespan: genePool.lifespan.def,
-            pointToDirection: genePool.pointToDirection,
-            followMouse: genePool.followMouse,
-            seekTarget: genePool.seekTarget,
-            isStatic: genePool.isStatic,
-            checkEdges: genePool.checkEdges,
-            wrapEdges: genePool.wrapEdges,
-            avoidEdges: genePool.avoidEdges,
-            avoidEdgesStrength: genePool.avoidEdgesStrength,
-            bounciness: genePool.bounciness,
-            maxSteeringForce: genePool.maxSteeringForce,
-            turningRadius: genePool.turningRadius,
-            thrust: genePool.thrust,
-            flocking: genePool.flocking,
-            draggable: genePool.draggable,
-            id: genePool.id
-        }
+
     ]
 }
 
 coefficiency = 0.01
 
+/*
+Create a new agent to implement to the universe.
 
-utils.newAgent = function(agent){
+arg 0 - agentdata: new agent, 
+arg 1 - name: null
+arg 2 - call type: 'def'
+*/
+utils.newAgent = function(){
+    var defaultName = null
+    var agent = arg(arguments, 0, utils.defaultAgent( 
+            arg(arguments, 1, defaultName), // name is argument 1 or defaultName
+            arg(arguments, 2, 'def') // call type; random, min, max
+        )
+    )
+
+
     fagent = new Flora.Agent(agent);
+
     world_data.fagents.push(fagent);
+    // If this agent data has been created by a mating, the
+    // information of the new agent will be within .agent
+    //world_data.agents.push(agent.agent || agent);
 
     d = {
         flora: fagent,
         data: agent,
-
     }
 
     return d
 }
 
+function getRandomArbitary (min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+
+utils.defaultAgent = function() {
+    var name = arg(arguments, 0, utils.generateUniqueID())
+    var methodCall = arg(arguments, 1, 'def') // min, max, random (within the min max range)
+    return {
+        mass: genePool.mass[methodCall],
+        maxSpeed: genePool.maxSpeed[methodCall],
+        minSpeed: genePool.minSpeed[methodCall],
+        motorSpeed: genePool.motorSpeed[methodCall],
+        lifespan: genePool.lifespan[methodCall],
+        pointToDirection: genePool.pointToDirection,
+        followMouse: genePool.followMouse,
+        seekTarget: genePool.seekTarget,
+        isStatic: genePool.isStatic,
+        checkEdges: genePool.checkEdges,
+        wrapEdges: genePool.wrapEdges,
+        avoidEdges: genePool.avoidEdges,
+        avoidEdgesStrength: genePool.avoidEdgesStrength,
+        bounciness: genePool.bounciness,
+        maxSteeringForce: genePool.maxSteeringForce,
+        turningRadius: genePool.turningRadius,
+        thrust: genePool.thrust,
+        flocking: genePool.flocking,
+        draggable: genePool.draggable,
+        id: name
+    }
+}
+/*
+Generate a new unqiue ID for use with naming
+*/
 utils.generateUniqueID = function(){
     agent = {
         mass: Flora.Utils.getRandomNumber(genePool.mass.min,  genePool.mass.max),
@@ -90,6 +121,8 @@ utils.generateUniqueID = function(){
     return utils.generateID(agent)
 }
 
+/* 
+Generate a predicable ID based on an inputted agent */
 utils.generateID = function() {
     
     var a = arguments;
@@ -97,10 +130,10 @@ utils.generateID = function() {
 
     var val = arg(agent, 'mass', 1) 
     * (arg(agent, 'maxSpeed', 1) + arg(agent, 'minSpeed', 1))
-    * (arg(agent, 'motorSpeed', 1) );
+    * (arg(agent, 'motorSpeed', 1) ) + arg(agent, 'followMouse', genePool.followMouse);
 
     val = String(val) + arg(agent, 'id', 'no-name');
-    return murmurhash3_32_gc(val)
+    return murmurhash3_32_gc(val) // + arg(agent, 'id', 'no-name');
 }
 
 // Wheel of fortune to pick fitness mutate over period
@@ -110,6 +143,10 @@ utils.generateID = function() {
     returns value of 0-1 to denote that genes mutation rate.
     this is calculated over the span of how many mutartions this gene has undertaken.
 */
+/*
+Calculate the mutation rate of a gene (value) by receiving a percentile of the
+current mutation across the entire gene pool.
+*/
 utils.mutationRate = function(value, parent){
     //'Receive a value of the agents gene option, calculate across the pool of
     //known agents to denote is current range. This range will return a 0 - 1 variancy'
@@ -117,12 +154,18 @@ utils.mutationRate = function(value, parent){
     return 0 // no mutation
 }
 
+/*
+Create a child element with new properties, inheriting the data from 2+ 
+parents.
+
+Factors are considered such as health, gene mutation rates, victorScale
+*/
 utils.mate = function(){
     //'Pass arguments to determine the genes to mate. Each object has agent properties.
     //Returned is a child with mutations in effect.'
     var parents = []
     for (var i = 0; i < arguments.length; i++) {
-        var parent = arguments[i];
+        var parent = arguments[i].data.genes ||  arguments[i];
         parents.push({parent: parent, fitness: utils.fitness(parent)});
     };
 
@@ -131,35 +174,133 @@ utils.mate = function(){
     mutationrate as a factor for pick.
     */
     var childGenes = {}
+
     for (var i = 0; i < parents.length; i++) {
+        // console.log("Looking at parent", parent)
         var parent = parents[i];
+        
 
-        // loop each method.
-        // get each parent mutationRate 
-        //  Fit 3    4    5
-        //  Mut 0.2  0.1  0.2
-        //  val 3    4    4
-        //  Scr 3    3    4
-        debugger;
-        var field = 'mass';
-        // How fit the current agent is
-        var fitness = parent.fitness;
-        // The amount of mutation this field gene has
-        var mutation = utils.mutationRate(field, parent);
-        // How strong this parent's gene is.
-        var victorScale = (parent.parent[field] + fitness) * mutation;
+        // read each parent property
+        // Create a tree of nested calcualtions.
+        var significantParent = parent.parent
+        for(var prop in significantParent) {
+            var field = prop;
+            var name = utils.generateID(significantParent)
+            // How fit the current agent is
+            var fitness = parent.fitness;
+            // The amount of mutation this field gene has
+            var mutation = utils.mutationRate(field, parent);
+            // How strong this parent's gene is. 
+            var victorScale = (Number(significantParent[field]) * mutation) + fitness;
+            
+            if(!childGenes[name]){
+                childGenes[name]  = {}
+            }
 
-        childGenes[parent] = {
-            field: field,
-            mutation: mutation,
-            victorScale: victorScale
+            childGenes[name][prop] = {
+                parent: name,
+                field: field,
+                mutation: mutation,
+                victorScale: victorScale,
+                value: significantParent[prop]
+            }
         }
-
         // give this to the child if it doesn't have it.
         // 
+    }
+
+    // console.log("child genes ready, ", childGenes)
+    // gene values created after wheelOfFortune mating of all parents.
+    var matedGenes = {}
+    matedGenes.genes = {}
+    matedGenes.agent = {}
+    // loop each property in each parent
+    for(var parent in childGenes){
+        
+        // loop each property in the loop, creating a list
+        for(var prop in childGenes[parent]) {
+            
+            var parentValues = []
+            for(var _parent in childGenes) {
+                parentValues.push(childGenes[_parent][prop])
+            } 
+            
+            matedGenes.genes[prop] = utils.wheelOfFortune(parentValues);
+            matedGenes.agent[prop] = matedGenes.genes[prop].value || matedGenes.genes[prop].val;
+            // convert flattened values to genepool defined values.
+            if(genePool[prop]) {
+                //debugger;
+                var geneType = typeof(genePool[prop]);
+                if(geneType == 'boolean') {
+                    matedGenes.agent[prop] = Boolean(matedGenes.agent[prop])
+                }
+            } else {
+                console.log(prop, 'missing from genePool', genePool)
+            }
+        }
+
+        // console.log(matedGenes)
+        break;
+    }
+
+    // Loop though each object property in the child string.
+    // factoring 
+    // mutationValue = mutation: a decmal value denoting the current mutation level. e.g. 0.001
+    // mutateVariance = value * mutationValue
+    // Send this object to the wheel of fortune to determine the final value
+    // newValue = utils.wheelOfFortune([ 
+    //                              { parent: p, value: 1, victorScale: 0, mutateVariance: .16},
+    //                              { parent: p, value: 1, victorScale: 0, mutateVariance: .16},
+    //                              { parent: p, value: 1, victorScale: 0, mutateVariance: .16}
+    //                                 ])
+    //WheelOffortune(value, victorScale, mutateVariance)
+    // field = newValue
+    return matedGenes
+}
+
+utils.wheelOfFortune = function(propertyList){
+    /*
+    Supply a list of objects:
+    { parent: p, value: 1, victorScale: 0, mutateVariance: .16},
+    { parent: p, value: 1, victorScale: 0, mutateVariance: .16},
+    { parent: p, value: 1, victorScale: 0, mutateVariance: .16}
+
+    returned will be the parent chosen and its new value.
+    The parent may be any identifier.
+    */
+
+    // get percentile.
+    // debugger;
+    var size = propertyList.length
+    var total = 0
+    //console.log('spinning wheelOfFortune on', size, 'parents')
+    for (var i  = propertyList.length - 1; i >= 0; i--) {
+         var val = (propertyList[i].value * propertyList[i].victorScale) // * propertyList[i].mutation;
+         total += val;
+         propertyList[i].val = val
+         //console.log(propertyList[i].parent, propertyList[i].field, 'has a score of', val, ' + mutationVariance', propertyList[i].mutation);
     };
 
-    return childGenes
+    winner = {};
+    winner.val =0
+    for (var i = propertyList.length - 1; i >= 0; i--) {
+        var element = propertyList[i];
+        if(total == 0) total = 1;
+        var percent = ( (100 / total) * propertyList[i].val ) + element.mutation;
+        //console.log(element.parent, element.field, propertyList[i].val,  percent + '%')
+        
+        // who wins
+        
+        var winnerVal = percent % propertyList[i].val;
+        if(winnerVal > winner.val) {
+            winner = element;
+            winner.winnerVal = winnerVal;
+        }
+    };
+
+    // console.log(winner)
+    // get the winner value between 0 and total.
+    return winner
 }
 
 utils.fitness = function(agent){
@@ -167,8 +308,12 @@ utils.fitness = function(agent){
     var speed = (agent.maxSpeed - agent.minSpeed) + (agent.motorSpeed + agent.thrust);
     var strength = agent.mass * agent.lifespan
 
-    return speed * strength
+    return (speed * strength) * -1
 }
+
+
+
+
 
 Flora.System.start(function() {
     Flora.universe.update({
@@ -184,6 +329,9 @@ Flora.System.start(function() {
 });
 
 
+
+
+// ------------------------------------------------------------------------------------------------
 
 
 function arg(_a, ia, def, returnArray) {
@@ -224,6 +372,12 @@ function arg(_a, ia, def, returnArray) {
     }
 
 }
+
+
+
+
+
+
 
 
 
