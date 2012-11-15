@@ -15,9 +15,9 @@ describe('PoolVal with (null)', function(){
 
     it('all returns should be false', function(){
         var p =     poolVal(false)
-        expect(p.def).toBeFalsy();
-        expect(p.min).toBeFalsy();
-        expect(p.max).toBeFalsy()
+        expect(p.def).toBe(false);
+        expect(p.min).toBe(false);
+        expect(p.max).toBe(false);
     });
 
     it('all returns should be true', function(){
@@ -26,4 +26,15 @@ describe('PoolVal with (null)', function(){
         expect(p.min).toBeTruthy();
         expect(p.max).toBeTruthy();
     });
+})
+
+describe('Seed Generator', function(){
+    var seed = utils.seedValue();
+    var seed1 = utils.seedValue('flappy');
+    var seed2 = utils.seedValue('flappy');
+    var seed3 = utils.seedValue('fishy');
+    var seed4 = utils.seedValue('fishy');
+    expect(seed).toBe(1)
+    expect(seed1).toBe(seed2)
+    expect(seed3).toBe(seed4)
 })

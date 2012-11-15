@@ -25,7 +25,7 @@ poolVal = function(){
         var randomVal = getRandomArbitary(min, max);
         switch(typeof(def)) {
             case 'boolean':
-                return Boolean(Math.round(Math.random()))
+                return def; // Boolean(Math.round(Math.random()))
                 break;
             case 'object':
                 return def
@@ -47,7 +47,7 @@ genePool = {
             motorSpeed: poolVal(1, 0, 2),
             lifespan: poolVal(-1, -1, -1),
             pointToDirection: poolVal(true),
-            followMouse: poolVal(false),
+            followMouse: poolVal(true),
             seekTarget: poolVal(null),
             isStatic: poolVal(false),
             checkEdges: poolVal(true),
@@ -72,6 +72,43 @@ world_data = {
 
 coefficiency = 0.01
 
+utils.getAgentByName = function(id){
+    for (var i = world_data.agents.length - 1; i >= 0; i--) {
+        if(world_data.agents[i].id == id){
+            return world_data.agents[i];
+        }
+    }
+}
+
+utils.mateByNumbers = function() {
+    /* give numerical indexes denoting position within
+    world_data.agents array */
+    var obj = []
+    for (var i = arguments.length - 1; i >= 0; i--) {
+        var index = arguments[i];
+        if(world_data.agents)
+        if(world_data.agents[index]) {
+            obj.push(world_data.agents[index])
+        }
+    };
+    return utils.mateByObject.apply(this, obj)
+
+}
+
+utils.mateByNames = function(){
+    /* each tring passed is a name */
+    var obj = []
+    for (var i = arguments.length - 1; i >= 0; i--) {
+        var name = arguments[i];
+        obj.push(utils.getAgentByName(name));
+    };
+    return utils.mateByObject.apply(this, obj)
+}
+
+utils.mateByObject = function() {
+    var child = utils.mate.apply(this, arguments);
+    return utils.newAgent(child);
+}
 /*
 Create a new agent to implement to the universe.
 
@@ -87,6 +124,10 @@ utils.newAgent = function(){
         )
     )
 
+    if(agent.agent != undefined) {
+        agent.agent.genes = agent.genes;
+        agent = agent.agent;
+    }
 
     fagent = new Flora.Agent(agent);
 
@@ -108,10 +149,45 @@ function getRandomArbitary (min, max) {
     return Math.random() * (max - min) + min;
 }
 
+// Single session seeds
+var randValues = new Array(); 
+utils.seedValue = function(key) {
+    //debugger;
+    if (randValues[key] == undefined) {
+        var keyval = 1;
+        for(var x in key) {
+            var value = Math.random(key);
+            randValues[ key[x] ] = value; 
+            keyval *= value;
+        }
+        randValues[key] = keyval;
+
+    }
+    var o = getRandomArbitary(randValues[key] || randValues[x], 
+            randValues[key] || randValues[x] )
+    return o
+}
+
+utils.randomString = function() {
+    var len = arg(arguments, 0, 5)
+    var key = arg(arguments, 1, Math.random().toString())
+    console.log(key)
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < len; i++)  {
+
+        var pos = Math.floor(utils.seedValue(key[i]) * possible.length);
+        
+        text += possible.charAt(pos);
+    }
+    return text;
+}
+
 
 utils.defaultAgent = function() {
-    var name = arg(arguments, 0, utils.generateUniqueID())
-    var methodCall = arg(arguments, 1, 'def') // min, max, random (within the min max range)
+    var name = arg(arguments, 0, utils.randomString());
+    var methodCall = arg(arguments, 1, 'def'); // min, max, random (within the min max range)
     return {
         mass: genePool.mass[methodCall],
         maxSpeed: genePool.maxSpeed[methodCall],
@@ -230,7 +306,7 @@ utils.mate = function(){
             }
 
             childGenes[name][prop] = {
-                parent: name,
+                parent: significantParent,
                 field: field,
                 mutation: mutation,
                 victorScale: victorScale,
@@ -394,7 +470,7 @@ function arg(_a, ia, def, returnArray) {
     }
     else {
         // if ia is just a value
-        if(_a[ia]) v = _a[ia];
+        if(_a[ia] !== undefined) v = _a[ia];
     }
 
     if( (v == null) && (def != undefined) ) {

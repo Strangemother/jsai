@@ -39,6 +39,7 @@ Generate an ID based upon the attributes given in the mandatory 'agent' object
 ##utils.mutationRate(value, parent)
 
 return a value between 0-1 to denote global mutation rate of the gene.
+_not implemented_
 
 ##utils.mate(agents...)
 
@@ -49,6 +50,7 @@ the strongest parents.
 ##utils.wheelOfFortune(propertyList)
 
 Supply a list of objects:
+
     { parent: p, value: 1, victorScale: 0, mutateVariance: .16},
     { parent: p, value: 1, victorScale: 0, mutateVariance: .16},
     { parent: p, value: 1, victorScale: 0, mutateVariance: .16}
