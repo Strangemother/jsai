@@ -5,14 +5,40 @@ genotype storage
 
 */
 utils = {}
-poolVal = function(def, min, max){
-    return {
+poolVal = function(){
+    var def = arg(arguments, 0, null);
+    var min = arg(arguments, 1, null);
+    var max = arg(arguments, 2, null);
+
+
+    if(typeof(def) == 'boolean') {
+
+        max = min = def
+    }
+
+    var obj = {
         def: def,
         min: min,
-        max: max,
-        random: getRandomArbitary(min, max)
-    }
-}
+        max: max
+    };
+    var funcs = {get:function(){
+        var randomVal = getRandomArbitary(min, max);
+        switch(typeof(def)) {
+            case 'boolean':
+                return Boolean(Math.round(Math.random()))
+                break;
+            case 'object':
+                return def
+
+        }
+        return randomVal;
+    }, set:function(){}};
+    Object.defineProperty(obj, "random", funcs);
+
+    return obj
+} 
+
+
 
 genePool = {
             mass: poolVal(1, 0, 5),
@@ -20,20 +46,20 @@ genePool = {
             minSpeed: poolVal(0, 0, 2),
             motorSpeed: poolVal(1, 0, 2),
             lifespan: poolVal(-1, -1, -1),
-            pointToDirection: true,
-            followMouse: false,
-            seekTarget: null,
-            isStatic: false,
-            checkEdges: true,
-            wrapEdges: false,
-            avoidEdges: false,
-            avoidEdgesStrength: 200,
-            bounciness: .75,
-            maxSteeringForce: 10,
-            turningRadius: 60,
-            thrust: 1,
-            flocking: false,
-            draggable: true,
+            pointToDirection: poolVal(true),
+            followMouse: poolVal(false),
+            seekTarget: poolVal(null),
+            isStatic: poolVal(false),
+            checkEdges: poolVal(true),
+            wrapEdges: poolVal(false),
+            avoidEdges: poolVal(false),
+            avoidEdgesStrength: poolVal(200, 0, 400),
+            bounciness: poolVal(.75, 0, 1),
+            maxSteeringForce: poolVal(10, 0, 11),
+            turningRadius: poolVal(60, 0, 180),
+            thrust: poolVal(1, 0, 2),
+            flocking: poolVal(false),
+            draggable: poolVal(true),
             id: 1
         }
 
@@ -64,7 +90,6 @@ utils.newAgent = function(){
 
     fagent = new Flora.Agent(agent);
 
-    world_data.fagents.push(fagent);
     // If this agent data has been created by a mating, the
     // information of the new agent will be within .agent
     //world_data.agents.push(agent.agent || agent);
@@ -73,11 +98,13 @@ utils.newAgent = function(){
         flora: fagent,
         data: agent,
     }
+    world_data.agents.push(agent);
 
     return d
 }
 
 function getRandomArbitary (min, max) {
+
     return Math.random() * (max - min) + min;
 }
 
@@ -91,20 +118,20 @@ utils.defaultAgent = function() {
         minSpeed: genePool.minSpeed[methodCall],
         motorSpeed: genePool.motorSpeed[methodCall],
         lifespan: genePool.lifespan[methodCall],
-        pointToDirection: genePool.pointToDirection,
-        followMouse: genePool.followMouse,
-        seekTarget: genePool.seekTarget,
-        isStatic: genePool.isStatic,
-        checkEdges: genePool.checkEdges,
-        wrapEdges: genePool.wrapEdges,
-        avoidEdges: genePool.avoidEdges,
-        avoidEdgesStrength: genePool.avoidEdgesStrength,
-        bounciness: genePool.bounciness,
-        maxSteeringForce: genePool.maxSteeringForce,
-        turningRadius: genePool.turningRadius,
-        thrust: genePool.thrust,
-        flocking: genePool.flocking,
-        draggable: genePool.draggable,
+        pointToDirection: genePool.pointToDirection[methodCall],
+        followMouse: genePool.followMouse[methodCall],
+        seekTarget: genePool.seekTarget[methodCall],
+        isStatic: genePool.isStatic[methodCall],
+        checkEdges: genePool.checkEdges[methodCall],
+        wrapEdges: genePool.wrapEdges[methodCall],
+        avoidEdges: genePool.avoidEdges[methodCall],
+        avoidEdgesStrength: genePool.avoidEdgesStrength[methodCall],
+        bounciness: genePool.bounciness[methodCall],
+        maxSteeringForce: genePool.maxSteeringForce[methodCall],
+        turningRadius: genePool.turningRadius[methodCall],
+        thrust: genePool.thrust[methodCall],
+        flocking: genePool.flocking[methodCall],
+        draggable: genePool.draggable[methodCall],
         id: name
     }
 }
@@ -164,8 +191,13 @@ utils.mate = function(){
     //'Pass arguments to determine the genes to mate. Each object has agent properties.
     //Returned is a child with mutations in effect.'
     var parents = []
+    var flatten = false;
     for (var i = 0; i < arguments.length; i++) {
-        var parent = arguments[i].data.genes ||  arguments[i];
+        var parent = arguments[i];
+        if(arguments[i].data){
+            var parent = arg(arguments[i].data, 'genes', arguments[i])
+        }
+        //var parent = arguments[i].data.genes ||  arguments[i];
         parents.push({parent: parent, fitness: utils.fitness(parent)});
     };
 
@@ -255,7 +287,13 @@ utils.mate = function(){
     //                                 ])
     //WheelOffortune(value, victorScale, mutateVariance)
     // field = newValue
-    return matedGenes
+    var returnData = matedGenes;
+    if(flatten) {
+        returnData = matedGenes.agent;
+        returnData.genes = matedGenes.genes
+    }   
+
+    return returnData;
 }
 
 utils.wheelOfFortune = function(propertyList){
