@@ -6,8 +6,21 @@ genotype storage
 */
 utils = {}
 poolVal = function(){
+    /*
+        three digits:   default, min, max
+            usual method of use
+
+        true, [false]:
+            default, allow random
+            if second value is ommited, the first value will always be returned
+            no matter the request
+
+        single bool:    false || true
+            single value will always be returned for min, max & random
+
+    */
     var def = arg(arguments, 0, null);
-    var min = arg(arguments, 1, null);
+    var minStore = min = arg(arguments, 1, null);
     var max = arg(arguments, 2, null);
 
 
@@ -23,11 +36,19 @@ poolVal = function(){
     };
     var funcs = {get:function(){
         var randomVal = utils.getRandomArbitary(min, max);
+
         switch(typeof(def)) {
             case 'boolean':
+                if(typeof(minStore) == 'boolean'){
+                    return Boolean(Math.round(Math.random()));
+                }
                 return def; // Boolean(Math.round(Math.random()))
                 break;
             case 'object':
+                // if(def === null) {
+                    // return null or inherited object.
+                // }
+
                 return def
 
         }
@@ -38,7 +59,25 @@ poolVal = function(){
     return obj
 } 
 
+behaviours = {
+    ACCELERATE: 'ACCELERATE',
+    DECELERATE: 'DECELERATE',
+    AGGRESSIVE: 'AGGRESSIVE',
+    COWARD: 'COWARD',
+    LIKES: 'LIKES',
+    LOVES: 'LOVES',
+    EXPLORER: 'EXPLORER',
+    RUN: 'RUN'
+}
 
+stimuli = {
+    Cold: 'Cold',
+    Heat: 'Heat',
+    Food: 'Food',
+    Light: 'Light',
+    Oxygen: 'Oxygen',
+    Predator: 'Predator'
+}
 
 genePool = {
             mass: poolVal(1, 0, 5),
@@ -47,27 +86,24 @@ genePool = {
             motorSpeed: poolVal(1, 0, 2),
             lifespan: poolVal(-1, -1, -1),
             pointToDirection: poolVal(true),
-            followMouse: poolVal(true),
+            followMouse: poolVal(true, false),
             seekTarget: poolVal(null),
-            isStatic: poolVal(false),
-            checkEdges: poolVal(true),
-            wrapEdges: poolVal(false),
-            avoidEdges: poolVal(false),
+            isStatic: poolVal(false, true),
+            checkEdges: poolVal(true, true),
+            wrapEdges: poolVal(false, true),
+            avoidEdges: poolVal(false, true),
             avoidEdgesStrength: poolVal(200, 0, 400),
             bounciness: poolVal(.75, 0, 1),
             maxSteeringForce: poolVal(10, 0, 11),
             turningRadius: poolVal(60, 0, 180),
             thrust: poolVal(1, 0, 2),
-            flocking: poolVal(false),
-            draggable: poolVal(true),
+            flocking: poolVal(false, true),
+            draggable: poolVal(true, true),
             id: 1
         }
 
 world_data = {
-    fagents: [],
-    agents: [
-
-    ]
+    agents: []
 }
 
 coefficiency = 0.01
