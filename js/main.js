@@ -22,7 +22,7 @@ poolVal = function(){
         max: max
     };
     var funcs = {get:function(){
-        var randomVal = getRandomArbitary(min, max);
+        var randomVal = utils.getRandomArbitary(min, max);
         switch(typeof(def)) {
             case 'boolean':
                 return def; // Boolean(Math.round(Math.random()))
@@ -109,6 +109,14 @@ utils.mateByObject = function() {
     var child = utils.mate.apply(this, arguments);
     return utils.newAgent(child);
 }
+
+utils.spawn = function(count) {
+    for(i=0;i<count;i++) {
+        var a = utils.newAgent(null, null, 'random') ;
+        // console.log(a.data.id);
+    }
+}
+
 /*
 Create a new agent to implement to the universe.
 
@@ -130,22 +138,17 @@ utils.newAgent = function(){
     }
 
     fagent = new Flora.Agent(agent);
-
+    agent.flora = fagent;
     // If this agent data has been created by a mating, the
     // information of the new agent will be within .agent
     //world_data.agents.push(agent.agent || agent);
 
-    d = {
-        flora: fagent,
-        data: agent,
-    }
     world_data.agents.push(agent);
 
-    return d
+    return agent
 }
 
-function getRandomArbitary (min, max) {
-
+utils.getRandomArbitary = function (min, max) {
     return Math.random() * (max - min) + min;
 }
 
@@ -163,7 +166,7 @@ utils.seedValue = function(key) {
         randValues[key] = keyval;
 
     }
-    var o = getRandomArbitary(randValues[key] || randValues[x], 
+    var o = utils.getRandomArbitary(randValues[key] || randValues[x], 
             randValues[key] || randValues[x] )
     return o
 }
@@ -435,10 +438,18 @@ Flora.System.start(function() {
         c: coefficiency
     });
 
+     var inputMenu = new Flora.InputMenu({
+        opacity: 0.4,
+        borderColor: 'transparent',
+        position: 'bottom center'
+      });
+
     for (var i = 0; i < world_data.agents.length; i++) {
         var agent = world_data.agents[i];
         utils.newAgent(agent)
     };
+
+    //Flora.StatsDisplay();
     
 });
 
