@@ -4,20 +4,516 @@
 		"selected_items":
 		[
 			[
-				"compl",
-				"complete_percent"
+				"an",
+				"animate"
 			],
 			[
-				"percent",
-				"percent_cache"
+				"setup",
+				"setupShip"
 			],
 			[
-				"percen",
-				"percent_cache"
+				"key",
+				"keyCode"
+			],
+			[
+				"attrib",
+				"attributes"
+			],
+			[
+				"ret",
+				"returns	@returns"
+			],
+			[
+				"p",
+				"param	@param"
+			],
+			[
+				"soc",
+				"socketOpen"
+			],
+			[
+				"ran",
+				"randomString"
+			],
+			[
+				"plain",
+				"plaintext"
+			],
+			[
+				"ini",
+				"initPin"
+			],
+			[
+				"send",
+				"sendJsonString"
+			],
+			[
+				"string",
+				"stringify"
+			],
+			[
+				"we",
+				"_websocket"
+			],
+			[
+				"enc",
+				"encodeddata"
+			],
+			[
+				"dec",
+				"decrypted"
+			],
+			[
+				"block",
+				"blockSize"
+			],
+			[
+				"Dec",
+				"DecodeAES"
+			],
+			[
+				"Enc",
+				"EncodeAES"
+			],
+			[
+				"get",
+				"getWidget"
+			],
+			[
+				"lock",
+				"lockParent"
+			],
+			[
+				"message",
+				"messageWidget"
+			],
+			[
+				"use",
+				"usecache"
 			],
 			[
 				"arg",
+				"arg"
+			],
+			[
+				"max-",
+				"max-height"
+			],
+			[
+				"Tem",
+				"TemplateDoesNotExist"
+			],
+			[
+				"curren",
+				"currentPage"
+			],
+			[
+				"content",
+				"contents"
+			],
+			[
+				"a",
 				"arguments"
+			],
+			[
+				"json",
+				"jsondata"
+			],
+			[
+				"high",
+				"highlighted"
+			],
+			[
+				"highli",
+				"highlight"
+			],
+			[
+				"hi",
+				"highlighted"
+			],
+			[
+				"highl",
+				"highlighted"
+			],
+			[
+				"_",
+				"_fontSize"
+			],
+			[
+				"init",
+				"initStateValue"
+			],
+			[
+				"unl",
+				"unlock"
+			],
+			[
+				"backgr",
+				"backgroundColor"
+			],
+			[
+				"con",
+				"contrast"
+			],
+			[
+				"highligh",
+				"highlighted"
+			],
+			[
+				"loc",
+				"lockParent"
+			],
+			[
+				"backg",
+				"backgroundColor"
+			],
+			[
+				"highlight",
+				"highlightColor"
+			],
+			[
+				"pind",
+				"pinpad"
+			],
+			[
+				"requi",
+				"requirejsImport"
+			],
+			[
+				"wi",
+				"widgetData"
+			],
+			[
+				"Widge",
+				"widgetData"
+			],
+			[
+				"den",
+				"dependencies"
+			],
+			[
+				"widget",
+				"widgetData"
+			],
+			[
+				"appen",
+				"appendWidget"
+			],
+			[
+				"return",
+				"returnHandler"
+			],
+			[
+				"click",
+				"clickHandler"
+			],
+			[
+				"dele",
+				"deleteKey"
+			],
+			[
+				"ar",
+				"arguments"
+			],
+			[
+				"enter",
+				"enterKey"
+			],
+			[
+				"closed",
+				"_closedText"
+			],
+			[
+				"displ",
+				"displayElement"
+			],
+			[
+				"app",
+				"apply"
+			],
+			[
+				"backgrou",
+				"background"
+			],
+			[
+				"di",
+				"digit"
+			],
+			[
+				"DISPL",
+				"display-container"
+			],
+			[
+				"display",
+				"displayElement"
+			],
+			[
+				"pin",
+				"pinLength"
+			],
+			[
+				"displa",
+				"displayText"
+			],
+			[
+				"ope",
+				"openHeight"
+			],
+			[
+				"op",
+				"options"
+			],
+			[
+				"regi",
+				"registered"
+			],
+			[
+				"res",
+				"registered"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"regist",
+				"registration"
+			],
+			[
+				"co",
+				"complete"
+			],
+			[
+				"wid",
+				"widgetEndpoint"
+			],
+			[
+				"entered",
+				"enteredpin"
+			],
+			[
+				"cls",
+				"clients"
+			],
+			[
+				"space",
+				"spaces1"
+			],
+			[
+				"conte",
+				"content_1"
+			],
+			[
+				"start",
+				"startClock"
+			],
+			[
+				"_te",
+				"_textElement"
+			],
+			[
+				"fon",
+				"fontSize"
+			],
+			[
+				"show",
+				"showOpenState"
+			],
+			[
+				"center",
+				"centerPoint"
+			],
+			[
+				"ic",
+				"iconEl"
+			],
+			[
+				"fo",
+				"for	for (…) {…}"
+			],
+			[
+				"ren",
+				"renderWeather"
+			],
+			[
+				"cont",
+				"context"
+			],
+			[
+				"widgetP",
+				"widgetPathData"
+			],
+			[
+				"H",
+				"HttpResponse"
+			],
+			[
+				"ca",
+				"callback"
+			],
+			[
+				"widg",
+				"widgetData"
+			],
+			[
+				"gr",
+				"gridding"
+			],
+			[
+				"current",
+				"currentPage"
+			],
+			[
+				"re",
+				"renderPage"
+			],
+			[
+				"page",
+				"pageVisible"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"today",
+				"todayForcast"
+			],
+			[
+				"P",
+				"PROJECT_ROOT"
+			],
+			[
+				"se",
+				"settings"
+			],
+			[
+				"man",
+				"manifest"
+			],
+			[
+				"w",
+				"widget"
+			],
+			[
+				"impo",
+				"import"
+			],
+			[
+				"manifes",
+				"manifests"
+			],
+			[
+				"to",
+				"to_folder"
+			],
+			[
+				"ma",
+				"manifest"
+			],
+			[
+				"ex",
+				"exists"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"unpack",
+				"unpacked"
+			],
+			[
+				"_page",
+				"_pagevisble"
+			],
+			[
+				"Arial",
+				"Arial, Helvetica, sans-serif"
+			],
+			[
+				"e",
+				"element"
+			],
+			[
+				"Wid",
+				"widgets"
+			],
+			[
+				"getOpen",
+				"getOpenHtmlReceiver"
+			],
+			[
+				"button",
+				"button"
+			],
+			[
+				"crear",
+				"createInterfaceButton"
+			],
+			[
+				"i",
+				"import"
+			],
+			[
+				"widge",
+				"widget_file"
+			],
+			[
+				"Widget",
+				"Widget"
+			],
+			[
+				"closd",
+				"closedIcon"
+			],
+			[
+				"open",
+				"openIcon"
+			],
+			[
+				"hide",
+				"hideLoader"
+			],
+			[
+				"cond",
+				"condition"
+			],
+			[
+				"l",
+				"length"
+			],
+			[
+				"icon",
+				"icons"
+			],
+			[
+				"stop",
+				"stopIconTimer"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"_icon",
+				"_iconCycleDelay"
+			],
+			[
+				"condi",
+				"conditionMap"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"data",
+				"dataRequest"
+			],
+			[
+				"locaion",
+				"locations"
 			]
 		]
 	},
@@ -27,16 +523,56 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 311.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jaca",
+				"Set Syntax: JavaScript (Rails)"
+			],
+			[
+				"bro",
+				"SFTP: Browse Remote…"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Set Syntax: Python"
+			],
 			[
 				"comm",
 				"Git: Commit"
 			],
 			[
-				"html",
-				"Set Syntax: HTML"
+				"add",
+				"Git: Add Current File"
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
 			],
 			[
 				"com",
@@ -47,16 +583,8 @@
 				"Git: Add..."
 			],
 			[
-				"qui",
-				"Git: Quick Commit"
-			],
-			[
 				"diff",
 				"Git: Diff Current File"
-			],
-			[
-				"add",
-				"Git: Add Current File"
 			],
 			[
 				"cancel",
@@ -75,10 +603,6 @@
 				"Package Control: Discover Packages"
 			],
 			[
-				"inst",
-				"Package Control: Install Package"
-			],
-			[
 				"instal",
 				"Package Control: Install Package"
 			],
@@ -91,11 +615,11 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 400.0
+		"width": 440.0
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 72.0
 	},
 	"distraction_free":
 	{
@@ -108,42 +632,145 @@
 	},
 	"file_history":
 	[
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/incident/css/reports-live.css",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/views.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/incident/report-live.css",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/qa27/settings.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/models.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/urls.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/report-live.css",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/manage.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/githistory/templates/githistory/index.html",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/utils/__init__.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/githistory/views.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/templates/incident/dashboard.html",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/githistory/static/githistory/css/index.css",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/templates/incident/list.html",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/css/style.css",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/css/list.css",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/js/script.js",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/docs/notes.",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/proj_static/images/svg/login.svg",
+		"/C/Work/clients/strangemother/kinect/index.html",
+		"/C/Work/clients/strangemother/kinect/keypress.html",
+		"/C/Work/clients/strangemother/kinect/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/socket_test/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/templates/base.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/socket/main.js",
+		"/C/Work/clients/strangemother/EshForm/EshForm/example.html",
+		"/C/Work/clients/strangemother/EshForm/js/eshForms.js",
+		"/C/Work/clients/strangemother/EshForm/js/eshForms.fields.js",
+		"/C/Work/clients/strangemother/EshForm/js/example.js",
+		"/C/Work/clients/strangemother/EshForm/README.md",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/socket/js/jsaes.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/add/templates/main.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/add/css/main.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/socket/js/websocket.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/socket_test/js/jsaes.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/add/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/serv.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/Widget.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/index.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/project-static/js/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/views.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/templates/grid/test.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/tests.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/aes.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/crypt.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/crypt_2.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/crypt_3.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/aes.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/cframe/urls.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/tests.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/message/css/main.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/message/templates/main.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/views.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/message/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/hello_world/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/css/index.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/my_ip/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/message/js/jquery.slabtext.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/templates/grid/widget-frame.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/page.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/gridding.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/index_app.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/pinpad/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/users/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/digital_time/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/date/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/weather_require/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/pinpad/templates/main.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/client.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/pinpad/css/main.css",
+		"/C/Users/Jay/Desktop/jsaes.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/css/main.css",
+		"/C/Work/clients/strangemother/speech-client/speech_test.py",
+		"/C/Work/clients/strangemother/speech-client/say.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/users/templates/main.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/users/css/main.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/cframe/socket_server.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/swsw.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/pywio.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/socks/pywio.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/pinpad.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/templates/grid/index.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/my_ip/css/main.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/hello_world/icons/world.svg",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/vendor/jquery.gridster.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/weather_require/css/main.css",
+		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/User/SFTP.errors.log",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/urls.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/cframe/serializers.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/css/smoke/themes/default.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/app/model.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/img/day-cloud.svg",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/css/widget.css",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/weather_require/templates/main.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/weather_require/manifest.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/models.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/add/manifest.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/add.tar.gz",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/admin.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/weather_require.tar.gz",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/management/commands/package.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/management/__init__.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/management/commands/__init__.py",
+		"/C/Work/clients/strangemother/dash/dash/add.tar.gz",
+		"/C/Work/clients/strangemother/dash/dash/cframe/cframe/settings.py",
+		"/C/Work/clients/strangemother/dash/dash/doc/Widget.md",
+		"/C/Work/clients/strangemother/dash/dash/doc/contribute.md",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/index_app.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/vendor/hammer.js",
+		"/C/Work/clients/strangemother/jsai/project.sublime-project",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/Widget.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/gridding.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/index.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/widget/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/page.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/Weather-widget.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/weather/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/model.js",
+		"/C/Users/Jay/AppData/Local/Temp/Rar$DRa0.530/jquery-require-sample/webapp/scripts/require-jquery.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/unpacked/widget/manifest.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/widgets/weather/mainfest.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/media/widgets/weather/main.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/forms.py",
+		"/C/Work/clients/strangemother/dash/dash/cframe/widget/templates/widget/list.html",
+		"/C/Work/clients/strangemother/dash/dash/cframe/grid/static/grid/js/hammer.js",
+		"/C/Users/Jay/AppData/Local/Temp/Rar$DRa0.638/jquery.zweatherfeed.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/project-static/js/Gravel.js/sprintf.js",
+		"/C/Work/clients/strangemother/dash/dash/cframe/static/js/Gravel.js/sprintf.js",
+		"/C/Work/clients/strangemother/dash/sftp-config.json",
 		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/qa27/context.py",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/test",
-		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/sftp-config.json",
-		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/User/SFTP.sublime-settings",
-		"/C/Users/Jay/AppData/Roaming/Sublime Text 2/Packages/SFTP/SFTP.sublime-settings"
+		"/C/Work/clients/strangemother/infared/src/phidgets/ir.py",
+		"/C/Work/clients/strangemother/infared/src/phidgets/cli_run.py",
+		"/C/Work/clients/strangemother/infared/project/infared/receiver/views.py",
+		"/C/Work/clients/strangemother/infared/libs/Phidgets/Devices/IR.py",
+		"/C/Work/clients/strangemother/speech/speech_test.py",
+		"/C/Work/clients/strangemother/infared/project/infared/settings.py",
+		"/C/Work/clients/strangemother/infared/project/infared/phidgets/ir.py",
+		"/C/Work/clients/strangemother/dash/cframe/grid/static/grid/js/index.js",
+		"/C/Work/clients/strangemother/jsai/js/main.js",
+		"/C/Work/clients/strangemother/jsai/readme.md",
+		"/C/Work/clients/strangemother/jsai/js/tests.js",
+		"/C/Work/clients/strangemother/jsai/css/main.css",
+		"/C/Work/clients/strangemother/jsai/index.html",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/incident/css/reports-live.css",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/views.py",
+		"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogate/app/incident/static/incident/report-live.css"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
 		"height": 0.0,
 		"where_history":
 		[
+			"<open folders>"
 		]
 	},
 	"find_state":
@@ -151,7 +778,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"000000"
+			"\n",
+			"circle",
+			"star",
+			"update",
+			"ship.",
+			"1",
+			"main",
+			"field",
+			"this.render",
+			"Utf8",
+			"self",
+			"socket",
+			"getterSetter",
+			"require",
+			"data",
+			"_type",
+			"onmessage",
+			"onopen",
+			"handler",
+			"this",
+			"BLOCK_SIZE",
+			"set_trace",
+			"format",
+			"content_1",
+			"content",
+			"this",
+			"path",
+			"closedText",
+			"openhandler",
+			"open handler",
+			"name",
+			"obj",
+			"showP",
+			"appname",
+			"showOpenHan",
+			"lock",
+			"highlighted",
+			"highlight",
+			"self",
+			"Color",
+			"colormod",
+			"lock",
+			"h",
+			"showP",
+			"(function",
+			"())\n",
+			"socket",
+			"a0",
+			"self",
+			";\n",
+			"debugger",
+			"self",
+			";\n",
+			"showPage",
+			"EchoServerProtocol",
+			"numpy",
+			"visibleHandler",
+			"var PinPad = function(options){\n    self.options = $.extend(PINPAD, options);\n}",
+			"text()",
+			"text().text",
+			"_text",
+			"showCl",
+			"closedIconUrl",
+			"closedIcon",
+			"toggleHighlight",
+			"on_stop_drag",
+			"function",
+			"openHand",
+			"++.",
+			"++",
+			"ASSET_IMG_URL + ",
+			"showers",
+			"ASSET_IMG_URL + ",
+			"grid",
+			"path",
+			"widgetData",
+			"page",
+			"context",
+			"output",
+			"search",
+			"eee",
+			"day",
+			"\n        element.find('.forecast .first .day').text(w.todayForcast.day)\n        element.find('.forecast .second .day').text(w.tomorrowForcast.day)\n",
+			"page",
+			"iframe",
+			"pageLoadHandler",
+			"openHandler",
+			"debugger;",
+			"showP",
+			"pageLoadHandler",
+			"arg",
+			"iframe",
+			"ul",
+			"]))",
+			"toggleS",
+			"toggleHighlight",
+			"self.store",
+			"createS",
+			"createScope",
+			"__options",
+			"widgetData",
+			"    \n",
+			"options = ",
+			"closedIcon",
+			"self.icon",
+			"icon",
+			"weather.",
+			"/static/grid/img/",
+			"docfile",
+			"documents",
+			"======",
+			"toggleState",
+			"iconTimer",
+			"getwea",
+			"get",
+			"_text",
+			"format",
+			"showLoa",
+			"hideLoader",
+			"showLoader",
+			"spinner",
+			"_html",
+			"visibleHandler",
+			"visible",
+			"openHan",
+			"closeHand",
+			"store",
+			"condCode"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -168,6 +922,11 @@
 	},
 	"groups":
 	[
+		{
+			"sheets":
+			[
+			]
+		},
 		{
 			"sheets":
 			[
@@ -191,6 +950,12 @@
 				0,
 				1,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
 			]
 		],
 		"cols":
@@ -201,10 +966,15 @@
 		"rows":
 		[
 			0.0,
+			0.717110300981,
 			1.0
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
 	"output.git":
 	{
 		"height": 100.0
@@ -212,6 +982,10 @@
 	"output.sftp":
 	{
 		"height": 100.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 374.0
 	},
 	"replace":
 	{
@@ -223,21 +997,33 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"widget",
+				"Dash/cframe/grid/static/grid/js/app/Widget.js"
+			],
+			[
+				"widget.js",
+				"Dash/cframe/grid/static/grid/js/app/Widget.js"
+			]
 		],
 		"width": 0.0
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"",
+				"/C/Work/clients/VMSUK/ti/QA/interrogate/titan-interrogat.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 224.0,
+	"side_bar_width": 233.0,
 	"status_bar_visible": true
 }
