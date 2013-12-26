@@ -1,0 +1,30 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Work/clients/strangemother/jsai"
+		},
+		{
+			"folder_exclude_patterns":
+			[
+				"build",
+				"libs",
+				"cframe/static"
+			],
+			"name": "Dash",
+			"path": "/C/Work/clients/strangemother/dash/dash"
+		},
+		{
+			"path": "/C/Work/clients/strangemother/infared"
+		},
+		{
+			"path": "/C/Work/clients/strangemother/speech-client"
+		},
+		{
+			"path": "/C/Work/clients/strangemother/EshForm"
+		},
+		{
+			"path": "/C/Work/clients/strangemother/kinect"
+		}
+	]
+}

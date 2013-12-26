@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Flora</title>
+    <link rel="stylesheet" href="css/main-2.css" type="text/css" charset="utf-8" />
+    <script src="js/vendor/verlet-1.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/burner.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/flora.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/zoe.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+
+  </head>
+  <body>
+    <canvas id="scratch" style="width: 100%; height: 800px;"></canvas>
+
+    <script type="text/javascript" charset="utf-8">
+      GRAVITY = [0, .1] // x, y
+      COEFFICIENT = .0;
+      // start the system; pass initial instructions
+
+    </script>
+    <script type="text/javascript">
+
+  window.onload = function() {
+    var canvas = document.getElementById("scratch");
+
+    // canvas dimensions
+    var width = window.screen.availWidth
+    var height = 800,
+      center = width * .5;
+
+    // retina
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = width*dpr;
+    canvas.height = height*dpr;
+    canvas.getContext("2d").scale(dpr, dpr);
+
+    // simulation
+    var sim = new VerletJS(width, height, canvas);
+    sim.friction = COEFFICIENT;
+    
+    if (world) {
+      world.simulator = sim;
+    }
+  
+  Burner.System.init(function() {
+    new Burner.StatsDisplay();
+    _loader()
+  }, {
+    gravity: new Burner.Vector(GRAVITY[0], GRAVITY[1]),
+    c: COEFFICIENT
+  });
+  
+    // animation loop
+    var loop = function() {
+      if(world) {
+        for (var i = 0; i < world.agents.school.length; i++) {
+          var fish = world.agents.school[i];
+          fish.render(sim)
+        };
+      }
+      sim.frame(16);
+      sim.draw();
+      requestAnimFrame(loop);
+    };
+
+    loop();
+  };
+  
+
+  
+  </script>
+  </body>
+</html>
