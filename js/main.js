@@ -35,12 +35,15 @@ var Character = function(){
 var _loader = function(){
 
 	// spawnSetup()
+	creature = world.creatures.long({
+		 
+	})
 }
 
 var spawnSetup = function(){
 	world.agents.spawn(10, 'walker', { 
 		bounciness: .1, 
-		maxSteeringForce: 360, 
+		maxSteeringForce: 100, 
 		checkEdges: false, 
 		motorSpeed: 2, 
 		minSpeed: 1, 
@@ -49,24 +52,28 @@ var spawnSetup = function(){
 		borderWidth: 1,
 		width: 5,
 		height: 5,
-		borderColor: [2,60,100] 
+		borderColor: [2,60,100]
 	});
 }
 
 world = {
-
+	timers: {
+		timer: function(agent, frames) {
+			debugger;
+		}
+	},
 	rules: {
 		// More light prodices 
 	},
 	creatures: {
 		short: function(){
-			world.agents.bug({
+			return world.agents.bug({
 				segments: 6,
 				segmentLength: 5
 			})
 		},
 		long: function(){
-			world.agents.bug({
+			return world.agents.bug({
 				followMouse: true,
 				segments: 15,
 				segmentLength: 10
@@ -194,6 +201,7 @@ world = {
 					newbug.world.location.y + (i * newbug.segmentLength) + newbug.segmentLength);
 				vectors.push(vector)
 			};
+			
 			this.school.push(newbug);
 		    
 		    // entities
@@ -207,6 +215,9 @@ world = {
       			this.tail.pos.y = this.flora.location.y;
 
 		    }
+
+			
+		    return newbug;
 		},
 
 		character: function(){
