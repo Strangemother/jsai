@@ -92,3 +92,7 @@ body {
     min-width: 2.8em;
     white-space: nowrap;
 }
+
+html, canvas, body {
+  background-color: #111;
+}

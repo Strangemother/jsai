@@ -4,38 +4,15 @@
 var run = function() {
 
 	gesso = new Gesso('main');
-	cw = 450;
-
-	gesso.stage.add({
-		draw: function(context){
-			Gesso.primitive.Circle(context, {
-				x: gesso.centerWidth * .5,
-				y: gesso.centerHeight * .5,
-				r: cw * .5
-			});
-		}
-	});
-
-	var cx =0;
-	var c = {
-		name: 'foo',
-		x: function(){
-			gesso.centerWidth
-			return cx++
-		},
-		y: gesso.centerHeight,
-		r: 220
-	}
-
-	gesso.stage.add('circle', c);
-
+	cw = 20
 	gesso.stage.add('circle', function(){
 		return {
-			x: cx,
-			y: 199,
-			color: 'green'
+			x: gesso.centerWidth,
+			y: gesso.centerHeight,
+			color: '#666'
 		}
-	})
+	});7
+
 	return
 	
     // simulation
@@ -78,6 +55,7 @@ var run = function() {
 				'js/3/gesso/Events.js',
 				'js/3/gesso/Stage.js',
 				'js/3/gesso/Map.js',
+				'js/3/gesso/Input.js',
 				'js/3/gesso/primitives.js',
 				
 			],

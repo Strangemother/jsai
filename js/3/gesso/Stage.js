@@ -50,7 +50,7 @@ Gesso.Stage = function(){
 
 			if( !(tdo).has('config') ){
 				d.config= function(k, v){
-					;
+					
 					if(v === undefined) {
 
 						return displayObject[k]

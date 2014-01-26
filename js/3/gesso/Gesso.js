@@ -88,10 +88,10 @@ var Gesso = function() {
 		this.fps_el 	= document.getElementById('fps');
 	    this.fps 	 	= 0;
 		window.requestAnimFrame = this.browserAnimationFrame;
-		this.events = GessoEvents();
-
 		
-
+		this.events = GessoEvents();
+		this.inputs = Gesso.Inputs()
+		
 		var setup = this.setupCanvas(name);
 
 		if(setup){
@@ -189,41 +189,8 @@ var Gesso = function() {
 G = Gesso;
 G.d = Gesso.data;
 // Static Methods
-Gesso.primitive = {};
 x = 0;
 
 Gesso.randomString = function(){
 	return Number(String( Math.random() ).replace('.', +(new Date) ) ).toString(36)
-}
-
-Gesso.renderConfig = function(dict, scope) {
-	/*
-	Accepts an object and returns a fully rendered item
-	with all methods within the dictionary called.
-	 */
-	
-	dict = dict || {}
-	var rd = {};
-
-	if( it(dict).is(Function) ){
-		dict = dict(scope)
-	} else if( it(dict).is(String) ){
-		return dict;
-	}
-
-
-
-	for (var prop in dict) {
-		if (dict.hasOwnProperty(prop)) {
-			var p = dict[prop];
-			rd[prop] = dict[prop];
-			// If the given element is a function, it should be
-			// called to return a value
-			if( it(p).is(Function) ) {
-				rd[prop] = dict[prop].apply(scope||this, [scope.stage.get(dict.name)])
-			} 
-		}
-	}
-
-	return rd;
 }
