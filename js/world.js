@@ -50,15 +50,6 @@ var run = function() {
 	// Application level config
 	assets: {
 		js: {
-			gesso: [
-				'js/3/gesso/Gesso.js',
-				'js/3/gesso/Events.js',
-				'js/3/gesso/Stage.js',
-				'js/3/gesso/Map.js',
-				'js/3/gesso/Input.js',
-				'js/3/gesso/primitives.js',
-				
-			],
 			required: [
 				//'js/vendor/underscore.js',
 				'js/vendor/zoe.js',
@@ -70,6 +61,15 @@ var run = function() {
 				//'js/vendor/keyboard.js',
 				//'js/vendor/events.js',
 				'js/3/minivents.js',
+				'js/3/gesso/Input.js',
+			],
+			gesso: [
+				'js/3/gesso/Events.js',
+				'js/3/gesso/Stage.js',
+				'js/3/gesso/Map.js',
+				'js/3/gesso/primitives.js',
+				'js/3/gesso/Gesso.js',
+				
 			],
 			app: [
 				'C:/Users/jay/Documents/GitHub/themis/it.js',

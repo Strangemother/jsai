@@ -14,10 +14,11 @@ var run = function() {
 	providing the basic registered type, followed by 
 	attributes for the element. 
 	Any methods will be called.
-	 */
 	
+	 */
 	gesso.stage.add('text', {
 		name: 'fps',
+		point: new Point(20,20),
 		text: function(element){
 			if(!it(element).has('__fps')) element.__fps=[];
 
@@ -28,6 +29,7 @@ var run = function() {
 			element.__fps.push(this.fps);
 			var i = element.__fps.length,
 			    _fps = 0;
+
 			while (i--) {
 			  _fps = _fps + element.__fps[i];
 			}
@@ -39,9 +41,14 @@ var run = function() {
 		}
 	})
 
-	t = gesso.stage.add('triangle')
-	c = gesso.stage.add('circle')
-
+	
+	
+	c = gesso.stage.add('circle', {
+		addons: ['Gamepad'],
+		x: 400,
+		y: 400
+	})
+	
 	return
 };
 
@@ -64,6 +71,8 @@ var run = function() {
 				'Stage.js',
 				'Map.js',
 				'Inputs.js',
+				'Point.js',
+				'gettersetter.js',
 				'primitives.js',
 			],
 			required: [

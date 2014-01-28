@@ -1,7 +1,7 @@
 Gesso.primitive = {};
 Gesso.Addons = {}
 
-Gesso.renderPrimitive = function(dict, scope) {
+Gesso.renderPrimitive = function(dict, scope, context) {
     /*
     Accepts an object and returns a fully rendered item
     with all methods within the dictionary called.
@@ -16,31 +16,73 @@ Gesso.renderPrimitive = function(dict, scope) {
         return dict;
     }
 
+    /**
+     * Returns a dictionary of values provided from the addon methods
+     * applied through the Gesso addons. 
+     * @param  {Object} primitiveData dictionary of data for the interface
+     * object.
+     * @return {Object}               to be merged with the primitiveData
+     */
+    var addons = function(primitiveData, context){
 
+        var data;
+        
+        if(!primitiveData.addons) return {};
+        
+        for (var i = primitiveData.addons.length - 1; i >= 0; i--) {
+            var addon = primitiveData.addons[i]
+            if (Gesso.Addons.hasOwnProperty(addon)) {
+                var _a = Gesso.Addons[addon];
+                data = _a.primitive;
+                
+                // The stored primitive to override the current 
+                // value; may be a function.
+    			if( it(_a.primitive).is(Function) ) {
+                    data =_a.primitive(context, primitiveData)
+                }
+                // merge the data with data.
 
-    for (var prop in dict) {
-        if (dict.hasOwnProperty(prop)) {
-            var p = dict[prop];
-            rd[prop] = dict[prop];
+                if( it(_a).has('draw') ) {
+                    _a.draw(context, primitiveData, this)
+                }
+            }        
+        }
+
+        return data;
+    }
+    
+    var addonData = addons.call(scope, dict, context);
+    var da = zoe.extend({}, dict, 'FILL');
+    zoe.extend(da, addonData, 'REPLACE');
+   
+    for (var prop in da) {
+        if (da.hasOwnProperty(prop)) {
+            var p = da[prop];
+            rd[prop] = da[prop];
             // If the given element is a function, it should be
             // called to return a value
             if( p && it(p).is(Function) ) {
-                rd[prop] = dict[prop].apply(scope||this, [scope.stage.get(dict.name)])
+				// the last value given for this property is the first argument,
+				// therefore a function can be pass through. 
+				// If the value hasn't been overridden, the original value is returned. 
+				// At this point; either can be null; 
+				var lastVal = (rd[prop] != da[prop])? rd[prop]: dict[prop],
+					stage = scope.stage.get(da.name || da.__DisplayObject);
+                rd[prop] = da[prop].apply(scope||this, [lastVal, stage, context])
             } 
         }
     }
 
-    for (var addon in Gesso.Addons) {
-        if (Gesso.Addons.hasOwnProperty(addon)) {
-            Gesso.Addons[addon];
-        }
-    }
+    
+    
     return rd;
 }
 
 
+
+
 Gesso.primitive.Circle = function circle(context, config, scope) {
-	var circle = Gesso.renderPrimitive(config, scope);
+	var circle = Gesso.renderPrimitive(config, scope, context);
 
     context.beginPath();
     context.strokeStyle = circle.color || '#CCC'
@@ -55,16 +97,21 @@ Gesso.primitive.Circle = function circle(context, config, scope) {
      
     context.arc( _x, _y, circle.r || 10, 0, Math.PI*2);
     context.stroke();
-    Gesso.primitive.Point(context, {x: _x, y: _y});
+    Gesso.primitive.Point(context, {x: _x, y: _y}, scope);
+
+    return config
 };
 
-Gesso.primitive.Point = function point(context, config) {
-	var point = Gesso.renderPrimitive(config) || [10, 10];
+Gesso.primitive.Point = function point(context, config, scope) {
+	var point = Gesso.renderPrimitive(config, scope) || [10, 10];
 	context.beginPath();
+
     context.fillStyle = point.color || '#999';
 
-    var _x = point[0] || point.x || point.point.x || point.point[0] || 10,
-        _y = point[1] || point.y || point.point.y || point.point[1] || 10;
+    var _x 		= point[0] || point.x,
+		_pointX = (it(point).has('point'))? point.point.x || point.point[0]: null,
+        _y 		= point[1] || point.y,
+		_pointY = (it(point).has('point'))? point.point.y || point.point[1]: null;
 
     context.arc( _x, _y, point.size || 2, 0, Math.PI * 2, false);
     context.fill();
@@ -73,103 +120,117 @@ Gesso.primitive.Point = function point(context, config) {
 Gesso.primitive.Text = function text(context, config, scope) {
     var text = Gesso.renderPrimitive(config, scope),
         cit = it(config),
-        x = (config.point)? config.point.x: config.x || 10,
-        y = (config.point)? config.point.y: config.y || 10;
+        point = Point.find(config, 'point');
 
     context.font = 'normal 12px Calibri';
+    context.fillStyle = config.color || config.fontColor || config.fillStyle
+   
     if( cit.is(String) ) {
-        context.fillText(config, x, y);
+        
+        context.fillText(config, point.x, point.y);
     } else if( cit.is(Object) ) {
-        context.fillText( text.text || text.label || 'Text', x,y);
+        // User can pass a Point object. The variables are 
+        // flatten
+        var _t = text.text || text.label || 'Text'
+
+        // Render point object.
+        if(text.text.constructor == Point) {
+            _t = text.text.toFormat()
+        }
+        
+        context.fillText( _t, point.x, point.y);
     }
 };
+
+Gesso.primitive.Crosshair = function crosshair(context, config, scope) {
+        var lineColor = config.color || '#ddd';
+        Gesso.primitive.Line(context, {
+            color: lineColor,
+            point: [
+                {
+                    x: function(){ 
+                        return config.x
+                    }, 
+                    y: function(){ 
+                        return gesso.height
+                    }
+                }, {
+                    x: function(){ 
+                        return config.x
+                    }, 
+                    y: function(){ 
+                        return 0
+                    }
+                }
+            ]
+        }, this)
+
+        Gesso.primitive.Line(context, {
+            color: lineColor,
+            point: [
+                {
+                    x: function(){ 
+                        return 0
+                    }, 
+                    y: function(){ 
+                        return config.y
+                    }
+                }, {
+                    x: function(){ 
+                        return gesso.width
+                    }, 
+                    y: function(){ 
+                        return config.y
+                    }
+                }
+            ]
+        }, this)
+
+        if(config.text === undefined) config.text = true;
+        if(config.text) {
+            var point = Point.find(config, 'text');
+            point.format = 'X: %(x)d';
+
+            Gesso.primitive.Text(context, {
+                text: point,
+                point: [point.x + 10, point.y - 50],
+                color: '#aaa',
+            }, this);
+
+            point.format = 'Y: %(x)d';
+            Gesso.primitive.Text(context, {
+                text: point,
+                point: [point.x + 50, point.y - 10],
+                color: '#aaa',
+            }, this);
+
+        }
+}
 
 Gesso.primitive.Line = function line(context, config, scope) {
     /*
     config = {
         a: [0,0],
-        b: [0,0]
+        b: [0,0],
+        color: '#333'
     }
 
     gesso.stage.add('line');
-    gesso.stage.add('line', { a: [10, 30], b:[50, 90] });
+    gesso.stage.add('line', [ [10, 30], [50, 90] ]);
     gesso.stage.add('line', [10, 20, 30, 40]);
     gesso.stage.add('line', [{x: 20, y: 30}, 
                              {x: 40, y: 66}]);
+    
+    gesso.stage.add('line', {x: 10, y: 10, x2: 100, y2: 200})
     */
-    var line = Gesso.renderPrimitive(config, scope),
-        cit = it(config);
+    var line = Gesso.renderPrimitive(config, scope);	
+    var point = new Point(config.point || config);
 
-    var ax = 10, 
-        ay = 20, 
-        bx = 100, 
-        by = 20;
+    context.beginPath();
+    context.moveTo(point.x1, point.y1);
+    context.lineTo(point.x2, point.y2);
 
-    if( cit.is(Array) ) {
-
-        if( it(config[0]).is(Object) ) {
-            ax = config[0].x;
-            ay = config[0].y;
-        } else {
-            if( config[0] ) ax = config[0];
-            if( config[1] ) ay = config[1];        
-        }
-
-        if( it(config[1]).is(Object) ) {
-            bx = config[1].x;
-            by = config[1].y;
-        } else if( it(config[2]).is(Number) ){
-            if( config[2] ) bx = config[2];
-            if( config[3] ) by = config[3];
-        }
-
-    } else if( cit.is(Object) ) {
-        var from = 'from', 
-            fromX = 0,
-            fromY = 1,
-            to = 'to',
-            toX = 0,
-            toY = 1;
-
-        if( cit.has('a') ) {
-            from = 'a'
-        }
-
-        if(config[from] && it(config[from]).is(Object) ) {
-            fromX = 'x';
-            fromY = 'y';
-        }
-        
-        if( cit.has('b') ) {
-            to = 'b'
-        }
-       
-        if(config[to] && it(config[to]).is(Object) ) {
-            toX = 'x';
-            toY = 'y';
-        }
-        
-        ax = it(config).has(from)? config[from][fromX]: ax;
-        ay = it(config).has(from)? config[from][fromY]: ay;
-        bx = it(config).has(to)? config[to][toX]: bx;
-        by = it(config).has(to)? config[to][toY]: by;
-        
-
-    } else {
-        if(!config[from]) config[from] = {};
-        config[from][0] = config[from].x = ax;
-        config[from][1] = config[from].y = ay;
-        
-        if(!config.b) config.b = {};
-        config.b[0] = config.b.x = bx;
-        config.b[1] = config.b.y = by;
-    }
-
-
-
-    context.beginPath();    
-    context.moveTo(ax,ay);
-    context.lineTo(bx,by);
+    context.strokeStyle = config.color || config.strokeStyle || '#999'
     context.stroke();
 };
 
@@ -233,7 +294,7 @@ Gesso.primitive.Triangle = function triangle(context, config, scope) {
             point: _point,
             color: '#999',
             size: pointSize
-        });
+        }, scope);
         
     };
     

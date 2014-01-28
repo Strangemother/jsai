@@ -17,7 +17,19 @@ Gesso.Stage = function(){
 	 * @return {DisplayObject}      returns the element matching the name passed
 	 */
 	this.get = function(name) {
-		return this.displayObjects[this.map.get(name)];
+
+		var d = this.displayObjects[this.map.get(name)];
+
+		if(d) return d;
+
+		for (var prop in this.displayObjects) {
+			if (this.displayObjects[prop].hasOwnProperty('data')) {
+				if( this.displayObjects[prop].data.name == name ||
+					this.displayObjects[prop].data.__DisplayObject == name ) {
+					return this.displayObjects[prop]
+				}
+			}
+		}	
 	}
 
 	/**
@@ -87,12 +99,16 @@ Gesso.Stage = function(){
 				primitive: 	this.map.get(DisplayObject),
 				data: 	data
 			}
+			prim.data.__DisplayObject = DisplayObject;
 			return this.add({
 				// Merge the user data into a stage object
 				data: data || prim.data,
 				draw: function(context){
 					(function(prim){
-						
+						if(!prim || !prim.primitive) {
+							return this.events.error(3, "Element '" + prim.data.__DisplayObject + "' not defined")
+						}
+
 						return prim.primitive.call(
 							this,
 							context, 
@@ -121,3 +137,4 @@ Gesso.Stage = function(){
 	}
 	return init.apply(this, arguments)
 }
+ 
