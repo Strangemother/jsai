@@ -187,6 +187,7 @@ Gesso.primitive.Crosshair = function crosshair(context, config, scope) {
         }, this)
 
         if(config.text === undefined) config.text = true;
+        
         if(config.text) {
             var point = Point.find(config, 'text');
             point.format = 'X: %(x)d';

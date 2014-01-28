@@ -42,11 +42,10 @@ var run = function() {
 	})
 
 	
-	
 	c = gesso.stage.add('circle', {
 		addons: ['Gamepad'],
 		x: 400,
-		y: 400
+		y: 40
 	})
 	
 	return
@@ -82,7 +81,8 @@ var run = function() {
 				'gamepad.min.js',
 			],
 			app: [
-				'C:/Users/jay/Documents/GitHub/themis/it.js',
+				'https://raw.github.com/Strangemother/themis/master/it.js',
+				// 'C:/Users/jay/Documents/GitHub/themis/it.js',
 			]
 		}
 	}

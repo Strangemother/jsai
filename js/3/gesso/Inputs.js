@@ -39,7 +39,7 @@ Gesso.Inputs.controllers.Gamepad = function(){
 		}
 
 
-		this.sensitivity = 10
+		this.sensitivity = 20
 
 		return this;
 	}
