@@ -5,6 +5,7 @@ var run = function() {
 
 	gesso = new Gesso('main');
 
+	// p = new G.create('Point', gesso)
 
 	cw = 450;
 	if(!gesso.stage) return;
@@ -39,49 +40,64 @@ var run = function() {
 			return _fps + ' fps';
 
 		}
-	})
+	});
 
+
+	tt = gesso.stage.add('text', {
+		text: 'stage',
+		x: gesso.centerWidth,
+		y: gesso.centerHeight,
+		size: 350,
+		align: 'center',
+		baseline: 'middle'
+	});
+
+	ttAnim = Gesso.animator(tt, 'spin', {
+		count: 3
+	});
 	
 	c = gesso.stage.add('circle', {
 		addons: ['Gamepad'],
 		x: 400,
-		y: 40
+		y: 40, 
+
 	})
 	
+
 	return
 };
 
 // Lets boot this baby.
 (function(){
 	ljs.addAliases(this.assets.js);
+
 	ljs.load(['required', 'gesso'], function(){
-		ljs.load('app', function(){
-			run();
-		});
-	});
+		//ljs.load('app', function(){
+			ljs.addAliases(Gesso.assets.js);
+			ljs.load(['gessoreq'], function(){
+				ljs.load('gesso', function(){
+					run();
+				});
+			});
+		//});
+	})
+	
 	return this;
 }).apply({
 	// Application level config
 	assets: {
 		js: {
 			gesso: [
-				'Events.js',
 				'Gesso.js',
-				'Stage.js',
-				'Map.js',
-				'Inputs.js',
-				'Point.js',
-				'gettersetter.js',
-				'primitives.js',
 			],
 			required: [
 				//'js/vendor/underscore.js',
+				'https://raw.github.com/Strangemother/themis/master/it.js',
 				'../../vendor/zoe.js',
 				'../minivents.js',
-				'gamepad.min.js',
+				'vendor/gamepad.min.js',
 			],
 			app: [
-				'https://raw.github.com/Strangemother/themis/master/it.js',
 				// 'C:/Users/jay/Documents/GitHub/themis/it.js',
 			]
 		}

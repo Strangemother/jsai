@@ -90,8 +90,7 @@ var Gesso = function() {
 		window.requestAnimFrame = this.browserAnimationFrame;
 		
 		this.events = GessoEvents();
-		this.inputs = Gesso.Inputs()
-		
+		//this.inputs = Gesso.Inputs()
 		var setup = this.setupCanvas(name);
 
 		if(setup){
@@ -174,9 +173,9 @@ var Gesso = function() {
 	this.draw = function(){
 		// loop through the drawLayers - assuming this element has
 		// a draw() method.
-		for (var i = this.drawLayers.length - 1; i >= 0; i--) {
-			if(this.drawLayers[i] && it(this.drawLayers[i]).has('draw') ) {
-			 this.drawLayers[i].draw(this.context)
+		for ( var i = this.drawLayers.length - 1; i >= 0; i-- ) {
+			if( this.drawLayers[i] && it(this.drawLayers[i]).has('draw') ) {
+				this.drawLayers[i].draw(this.context);
 			}
 		};
 	};
@@ -190,6 +189,27 @@ G = Gesso;
 G.d = Gesso.data;
 // Static Methods
 x = 0;
+
+Gesso.assets = {
+	js: {
+		gesso: [
+			'lib/Events.js',
+			'objects/Gesso.object.js',
+			//'lib/Stage.js',
+			//'lib/Map.js',
+			// 'lib/Inputs.js',
+			//'lib/Point.js',
+			//'lib/Animate.js',
+			//'lib/primitives.js',
+		],
+		gessoreq: [
+			//'js/vendor/underscore.js',
+			'vendor/my.class.js',
+			'vendor/gettersetter.js',
+		],
+	}
+}
+
 
 Gesso.randomString = function(){
 	return Number(String( Math.random() ).replace('.', +(new Date) ) ).toString(36)

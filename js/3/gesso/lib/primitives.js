@@ -74,7 +74,6 @@ Gesso.renderPrimitive = function(dict, scope, context) {
     }
 
     
-    
     return rd;
 }
 
@@ -120,11 +119,18 @@ Gesso.primitive.Point = function point(context, config, scope) {
 Gesso.primitive.Text = function text(context, config, scope) {
     var text = Gesso.renderPrimitive(config, scope),
         cit = it(config),
-        point = Point.find(config, 'point');
+        point = Point.find(config, 'point'),
+        fontName = config.fontName || config.font || 'Calibri',
+        fontSize = config.fontSize || config.size || '12px';
 
-    context.font = 'normal 12px Calibri';
+    if( it(fontSize).is(Number) ) {
+        fontSize = String(fontSize) + 'px'
+    }
+    context.font = 'normal ' + fontSize + ' ' + fontName;
     context.fillStyle = config.color || config.fontColor || config.fillStyle
-   
+    context.textAlign = config.align || config.alignment || config.textAlign || 'start';
+    context.textBaseline = config.textBaseline || config.baseline || config.horizontalAlign || config.base || 'alphabetic';
+
     if( cit.is(String) ) {
         
         context.fillText(config, point.x, point.y);
@@ -187,7 +193,7 @@ Gesso.primitive.Crosshair = function crosshair(context, config, scope) {
         }, this)
 
         if(config.text === undefined) config.text = true;
-        
+
         if(config.text) {
             var point = Point.find(config, 'text');
             point.format = 'X: %(x)d';
@@ -301,9 +307,3 @@ Gesso.primitive.Triangle = function triangle(context, config, scope) {
     
     context.restore()
 };
-
-Gesso.animate = {}
-
-Gesso.animate.range = function(property, from, to) {
-    debugger;
-}

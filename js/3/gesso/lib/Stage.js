@@ -125,7 +125,13 @@ Gesso.Stage = function(){
 		return displayObject;
 	}
 
-	this.draw = function(context) {
+	
+	return init.apply(this, arguments)
+}
+
+ Gesso.Stage.prototype = {
+ 	draw: function(context) {
+ 		// prototype
 		for (var i = this.displayObjects.length - 1; i >= 0; i--) {
 			var displayObject = this.displayObjects[i];
 			if( it(displayObject).has('draw') ) {
@@ -135,6 +141,4 @@ Gesso.Stage = function(){
 			}
 		};
 	}
-	return init.apply(this, arguments)
 }
- 
