@@ -3,6 +3,7 @@
 	G.Class = my.Class;
 })();
 
+
 (function(){
 
 	/**
@@ -12,16 +13,16 @@
 		If a Class extends this, it can be drawn. 
 	*/
 	var DrawObject = G.Class({
-
 		constructor: function(gesso, config) {
 			if(!gesso) {
 				return undefined
 			}
-			this.gesso = gesso
-			this.addToDrawLayer(gesso.stage);
+			this.gesso = gesso;
+
+			this.addToDrawLayer(gesso.stage, gesso.steps);
 			return this;
 	    },
-
+	    data: {},
 		/**
 		 * receive a context to draw an object. at it's basic entity. this 
 		 * entity needed to add to a Gesso display object.
@@ -43,33 +44,32 @@
 		 * 
 		 * @param {Object} drawLayer drawLayer to render to.
 		 */
-		addToDrawLayer: function(drawLayer) {
-			this.drawLayers = (drawLayer)? drawLayer: this.gesso.drawLayers || this.gesso;
-			this.drawLayers.push({ draw: this.draw });
+		addToDrawLayer: function(drawLayer, stepLayer) {
+			var drawLayers = (drawLayer)? drawLayer: this.gesso.drawLayers || this.gesso;
+			var stepLayers = (stepLayer)? stepLayer: this.gesso.stepLayers || this.gesso;
+
+			drawLayers.push({ 
+				/* Pass the method to draw to */
+				draw: this.draw, 
+				/* Pass the data object to define a commincative context
+				beween step() and draw() */
+				data: this.data, 
+				// cheap copy for the lazy
+				// d: this.data 
+			});
+
+			if(this.step) {
+				stepLayers.push({
+					step: this.step,
+					data: this.data,
+					entity: this
+				});
+			}
+
 			return drawLayer;
 		}
 	});
 
 	G.DrawObject = DrawObject;
-
-	var Point = G.Class(DrawObject, {
-		
-		point: null,
-		size: 2,
-		lineWidth: 1,
-		fillStyle: '#999',
-		constructor: function(gesso, config) {
-			Point.Super.call(this, gesso, config);
-		},
-
-		draw: function(context){ 
-			context.beginPath();
-			context.fillStyle = this.fillStyle;
-			context.arc(this.point.x, this.point.y, this.size, 0, Math.PI * 2, false);
-	    	context.fill();
-		}
-	});
-
-	G.Point = Point;
 })();
 

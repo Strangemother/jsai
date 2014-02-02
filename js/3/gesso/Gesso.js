@@ -97,6 +97,8 @@ var Gesso = function() {
 			this.loop();
 		}
 
+		// An array of methods to call during stepping logic.
+		this.steps = this.step.layers;
 		return this;
 	};
 
@@ -132,6 +134,7 @@ var Gesso = function() {
 	    }
 	    // List of elements to render.
 		this.drawLayers	= [this.stage];
+		this.step.start(1000 / 60)
 	    return true
 	};
 
@@ -144,15 +147,52 @@ var Gesso = function() {
 	          function(/* function */ callback, /* DOMElement */ element){
 	            window.setTimeout(callback, 1000 / 60);
 	          };
-	})();
+	})()
+
+	this.step = {
+		layers: [],
+		// Every one second
+		delay: 1000,
+		
+	 	perform: function(){
+			var handler = this.handler,
+				layers = this.layers,
+				perform = this.perform,
+				self = this;
+
+			this.timer = window.setTimeout(function(){
+				for ( var i = layers.length - 1; i >= 0; i-- ) {
+					if( layers[i] 
+						&& it(layers[i]).has('step') 
+						) {
+						layers[i].step.call(layers[i].data || {}, 
+							layers[i].entity, 
+							layers[i].data);
+					}
+				};
+				perform.apply(self)
+			}, this.delay);
+
+		},
+		stop: function(){
+			window.clearTimeout(this.timer)
+		},
+		start: function(delay){
+			this.delay = parseInt(delay) || this.delay
+			// loop through the drawLayers - assuming this element has
+			// a step() method.
+			this.perform()
+
+		}
+	}
 
 	this.render = function() {
         /* FPS setup */
         var fps_now = new Date;
         self.fps = 1000 / (fps_now - self.fps_last);
         self.fps_last = fps_now;
-
     	this.context.clearRect( 0, 0, this.width, this.height );
+
         self.context.save();
         self.draw(self.context)
         self.context.restore();
@@ -165,9 +205,8 @@ var Gesso = function() {
 	            requestAnimFrame(animloop);
 	            self.render();
 	        })();
-	    }
-
-	    _loop()
+	    };
+	    _loop();
 	};
 
 	this.draw = function(){
@@ -175,7 +214,7 @@ var Gesso = function() {
 		// a draw() method.
 		for ( var i = this.drawLayers.length - 1; i >= 0; i-- ) {
 			if( this.drawLayers[i] && it(this.drawLayers[i]).has('draw') ) {
-				this.drawLayers[i].draw(this.context);
+				this.drawLayers[i].draw(this.context, this.drawLayers[i].data || {});
 			}
 		};
 	};
@@ -195,6 +234,7 @@ Gesso.assets = {
 		gesso: [
 			'lib/Events.js',
 			'objects/Gesso.object.js',
+			'objects/Gesso.point.js',
 			//'lib/Stage.js',
 			//'lib/Map.js',
 			// 'lib/Inputs.js',

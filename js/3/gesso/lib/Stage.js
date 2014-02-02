@@ -135,9 +135,7 @@ Gesso.Stage = function(){
 		for (var i = this.displayObjects.length - 1; i >= 0; i--) {
 			var displayObject = this.displayObjects[i];
 			if( it(displayObject).has('draw') ) {
-				// debugger
 				displayObject.draw(context);
-				
 			}
 		};
 	}
