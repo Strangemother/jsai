@@ -88,17 +88,7 @@ Gesso.animator = function(element, name, config) {
 	}
 	
 	debugger;
-	// Extend the gesso draw method with an extension.
-	zoe.on(element, 'draw', function(context){
-		console.log('raw')
-		for (var prop in Gesso.animators) {
-			if (Gesso.animators.hasOwnProperty(prop)) {
-				var draw = Gesso.animators[prop];
-				draw(context)
-			}
-		}	
-	})
-
+	
 	return Gesso.animators[name]
 }
 

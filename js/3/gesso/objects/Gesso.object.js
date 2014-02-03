@@ -23,6 +23,7 @@
 			return this;
 	    },
 	    data: {},
+		
 		/**
 		 * receive a context to draw an object. at it's basic entity. this 
 		 * entity needed to add to a Gesso display object.

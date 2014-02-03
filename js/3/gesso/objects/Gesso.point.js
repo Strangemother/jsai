@@ -9,12 +9,15 @@
 		 * @type {Number}
 		 */
 		x: 10,
+		y: 10,
 		size: 2,
 		lineWidth: 1,
 		fillStyle: '#999',
 
 		constructor: function(gesso, config) {
 			Point.Super.call(this, gesso, config);
+			this.data.x = this.x;
+			this.data.y = this.y;
 		},
 		
 		/**
@@ -41,30 +44,9 @@
 			for webwork offset and alterating the calculation steps of the
 			resulting draw.
 			 */
-			var x = 100;
-			if(this.x) {
-				x = this.x
-			} else {
-				if(point && point.point) {
-					x = point.point.x;	
-				} else if(point) {
-					x = point.x;
-				}
-			}
+			this.x = point.getX();
+			this.y = point.getY();
 			
-			var y = 100;
-			if(this.y) {
-				y = this.y; 
-			} else {
-				if(point && point.point) {
-					y = point.point.y;
-				} else if(point) {
-					y = point.y;
-				}
-			}
-			
-			this.x = x;
-			this.y = y;
 			// map allowed public allowed variables to the data scope.
 			this.lineWidth = point.lineWidth;
 			this.fillStyle = point.fillStyle;
@@ -72,6 +54,35 @@
 			
 		}, 
 
+		getX: function(){
+			var x = 10;
+			if(this.x) {
+				x = this.x
+			} else {
+				if(this && this.point) {
+					x = this.point.x;	
+				} else if(thisx) {
+					x = this.x;
+				}
+			}
+
+			return x;
+		},
+
+		getY: function(){
+
+			var y = 10;
+			if(this.y) {
+				y = this.y; 
+			} else {
+				if(this && this.point) {
+					y = this.point.y;
+				} else if(this.y) {
+					y = this.y;
+				}
+			}
+			return y;
+		},
 		/**
 		 * Provided to the draaw renderer to present the values within the class.
 		 * This is isolated from the main class, running within a closed scoped

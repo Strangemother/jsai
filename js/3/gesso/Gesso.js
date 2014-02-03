@@ -134,7 +134,7 @@ var Gesso = function() {
 	    }
 	    // List of elements to render.
 		this.drawLayers	= [this.stage];
-		this.step.start(1000 / 60)
+		this.step.start(1000 / 60, this)
 	    return true
 	};
 
@@ -154,34 +154,35 @@ var Gesso = function() {
 		// Every one second
 		delay: 1000,
 		
-	 	perform: function(){
+	 	perform: function(gesso){
 			var handler = this.handler,
 				layers = this.layers,
 				perform = this.perform,
 				self = this;
 
-			this.timer = window.setTimeout(function(){
+			this.timer = window.setTimeout(function(gesso){
 				for ( var i = layers.length - 1; i >= 0; i-- ) {
 					if( layers[i] 
 						&& it(layers[i]).has('step') 
 						) {
 						layers[i].step.call(layers[i].data || {}, 
-							layers[i].entity, 
-							layers[i].data);
+							layers[i].entity,
+							gesso);
 					}
 				};
-				perform.apply(self)
-			}, this.delay);
+
+				perform.apply(self, [gesso]);
+			}, this.delay, gesso);
 
 		},
 		stop: function(){
 			window.clearTimeout(this.timer)
 		},
-		start: function(delay){
+		start: function(delay, gesso){
 			this.delay = parseInt(delay) || this.delay
 			// loop through the drawLayers - assuming this element has
 			// a step() method.
-			this.perform()
+			this.perform(gesso)
 
 		}
 	}
@@ -235,6 +236,7 @@ Gesso.assets = {
 			'lib/Events.js',
 			'objects/Gesso.object.js',
 			'objects/Gesso.point.js',
+			'objects/Gesso.text.js',
 			//'lib/Stage.js',
 			//'lib/Map.js',
 			// 'lib/Inputs.js',

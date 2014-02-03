@@ -8,7 +8,6 @@ var run = function() {
 	// p = new G.create('Point', gesso)
 
 	cw = 450;
-	if(!gesso.stage) return;
 	
 	/*
 	A first example of using a basic element 
@@ -17,31 +16,30 @@ var run = function() {
 	Any methods will be called.
 	
 	 */
-	gesso.stage.add('text', {
+	text = new G.Text(gesso, {
 		name: 'fps',
-		point: new Point(20,20),
-		text: function(element){
-			if(!it(element).has('__fps')) element.__fps=[];
+		x: 20,
+		y: 20, 
+		size: 12,
+		text: function(gesso){
+			if(!this._fps)this._fps=[];
+			if(this._fps.length > 100) this._fps.pop();			
+			this._fps.push(gesso.fps);
 
-			if(element.__fps.length > 100) {
-				element.__fps.pop()
-			};
-			
-			element.__fps.push(this.fps);
-			var i = element.__fps.length,
+			var i 	= this._fps.length,
 			    _fps = 0;
 
 			while (i--) {
-			  _fps = _fps + element.__fps[i];
+			  _fps = _fps + this._fps[i];
 			}
 
-			_fps = Math.round(_fps / element.__fps.length)
+			_fps = Math.round(_fps / this._fps.length)
 
 			return _fps + ' fps';
-
 		}
 	});
-
+	
+	if(!gesso.stage) return;
 
 	tt = gesso.stage.add('text', {
 		text: 'stage',
