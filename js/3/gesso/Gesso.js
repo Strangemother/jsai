@@ -237,6 +237,7 @@ Gesso.assets = {
 			'objects/Gesso.object.js',
 			'objects/Gesso.point.js',
 			'objects/Gesso.text.js',
+			'objects/Gesso.Gamepad.js',
 			//'lib/Stage.js',
 			//'lib/Map.js',
 			// 'lib/Inputs.js',

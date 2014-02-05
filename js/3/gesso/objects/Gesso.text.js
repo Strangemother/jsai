@@ -8,22 +8,24 @@
 			}
 
 		},
+		
 		size: 12,
 		text: 'new label!',
+		fillStyle: 'green',
 
-		step: function(point, gesso){
+		step: function(text, gesso){
 			
 			// map allowed public allowed variables to the data scope.
-			var cit 		= it(point.text);
-			this.lineWidth 	= point.lineWidth;
-			this.fillStyle 	= point.fillStyle;
-			this.size 		= point.size;
-			this.x 			= point.getX();
-			this.y 			= point.getY();
-		    this.text 		= point.text || this.text;
+			var cit 		= it(text.text);
+			// this.lineWidth 	= text.lineWidth;
+			this.fillStyle 	= text.fillStyle;
+			var size 		= text.size;
+			this.x 			= text.getX();
+			this.y 			= text.getY();
+		    this.text 		= text.text || this.text;
 	        this.fontName 	= this.font || this.fontName || 'Calibri';
-	        this.fontSize 	= this.size || this.fontSize || '12px';
-		    this.textBaseline = point.textBaseline || point.base || 'top';
+	        this.fontSize 	= size || this.fontSize || '12px';
+		    this.textBaseline = text.textBaseline || text.base || 'top';
 
 		    if( it(this.fontSize).is(Number) ) {
 		        this.fontSize = String(this.fontSize) + 'px'

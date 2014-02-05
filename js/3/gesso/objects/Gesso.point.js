@@ -12,13 +12,15 @@
 		y: 10,
 		size: 2,
 		lineWidth: 1,
-		fillStyle: '#999',
+		fillStyle: 'red',
 
 		constructor: function(gesso, config) {
 			Point.Super.call(this, gesso, config);
 			// this.data = new Object();
-			this.data.x = this.x;
-			this.data.y = this.y;
+			// this.data.x = this.x;
+			// this.data.y = this.y;
+			//this.data.lineWidth = this.lineWidth;
+			//this.data.fillStyle = this.fillStyle;
 
 		},
 		/**

@@ -5,7 +5,6 @@
 
 
 (function(){
-
 	/**
 		A basic DrawObject is applied to the draw layer.
 		This contains fundamentally a `draw()` method to
@@ -21,7 +20,7 @@
 	     */
 		globals: {
 
-		}
+		},
 
 		constructor: function(gesso, config) {
 			if(!gesso) {
