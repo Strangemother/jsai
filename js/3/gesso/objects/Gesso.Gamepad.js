@@ -1,5 +1,5 @@
 (function(){
-	var GamepadPoint = G.Class(G.Point, {
+	var MotionPoint = G.Class(G.Point, {
 		
 		point: null,
 
@@ -12,17 +12,15 @@
 		y: 50,
 		size: 3,
 		lineWidth: 1,
-		fillStyle: 'orange',
-		sensitivity: 10,
-
+		fillStyle: 'black',
+		sensitivity: 100,
+		// absolute
+		position: 'relative',
 		constructor: function(gesso, config) {
-			GamepadPoint.Super.call(this, gesso, config);
-			// this.data = new Object();
+			MotionPoint.Super.call(this, gesso, config);
 			this.x = gesso.centerWidth;
 			this.y = gesso.centerHeight;
-			//this.data.lineWidth = this.lineWidth;
-			//this.data.fillStyle = this.fillStyle;
-			this.setup()
+			this.setup();
 		},
 
 		/**
@@ -77,6 +75,7 @@
 			    // e.control of gamepad e.gamepad pressed down
 			    console.log('Gamepad', e);
 			    self.act[e.control] = Boolean(!self.act[e.control])
+			    self.buttonUp(e, self.act[e.control])
 			});
 
 			gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
@@ -91,6 +90,14 @@
 			});
 		},
 
+		buttonUp: function(e, toggle) {
+			
+			switch(e.control.toLowerCase()) {
+				case 'select_back':
+					this.position = (toggle)? 'absolute': undefined;
+					this.sensitivity = (this.position)? 100: 1000;
+			}
+		},
 		/**
 		 * The step method is isolated from the main scope of the
 		 * class. This is to ensure the Flywieght design of the method doesn't
@@ -120,9 +127,8 @@
 			
 			// map allowed public allowed variables to the data scope.
 			this.lineWidth = point.lineWidth;
-			this.fillStyle = point.fillStyle;
+			this.fillStyle = (point.act['connected'])? point.fillStyle: '#DDD';
 			this.size = point.size;
-			
 		}, 
 
 		/**
@@ -170,10 +176,12 @@
 
 			var inputVal = this.pad('left_stick_x', 0);
 			var axisVal = this.axisVal(inputVal);
-			var __x = (x || 100) + ( axisVal * (this.data.sensitivity || this.sensitivity) );
-			
-			return __x;
+			var position = axisVal * this.sensitivity;
 
+			if(this.position == 'absolute') {
+				this.x += position
+			}
+			return x + position;
 		},
 
 		getY: function(){
@@ -192,9 +200,12 @@
 
 			var inputVal = this.pad('left_stick_y', 0);
 			var axisVal = this.axisVal(inputVal);
-			var __y = (y || 100) + ( axisVal * (this.data.sensitivity || this.sensitivity) );
-			
-			return __y;
+			var position = axisVal * this.sensitivity;
+
+			if(this.position == 'absolute') {
+				this.y += position
+			}
+			return y + position;
 		},
 
 		/**
@@ -222,5 +233,5 @@
 		}
 	});
 
-	G.Gamepad = GamepadPoint;
+	G.MotionPoint = MotionPoint;
 })();

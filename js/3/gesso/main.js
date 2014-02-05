@@ -39,6 +39,8 @@ var run = function() {
 		}
 	});
 	
+	gamepadExample()
+
 	if(!gesso.stage) return;
 
 	tt = gesso.stage.add('text', {
@@ -63,6 +65,15 @@ var run = function() {
 	
 
 	return
+};
+
+var gamepadExample = function(){
+	// debugger;
+	gpp = new G.MotionPoint(gesso);
+	gpp.sensitivity = 500;
+
+	gpc = new G.Circle(gesso);
+	gpc.size = 150
 };
 
 // Lets boot this baby.
@@ -94,6 +105,7 @@ var run = function() {
 				'../../vendor/zoe.js',
 				'../minivents.js',
 				'vendor/gamepad.min.js',
+				'vendor/gyro.min.js',
 			],
 			app: [
 				// 'C:/Users/jay/Documents/GitHub/themis/it.js',

@@ -108,8 +108,8 @@ var Gesso = function() {
 		    cw = window.innerWidth || e.clientWidth || g.clientWidth,
 		    ch = window.innerHeight|| e.clientHeight|| g.clientHeight;
 
-        this.width 		 = w || this.width || (cw * .9);
-        this.height 	 = h || this.height || (ch * .9);
+        this.width 		 = w || this.width || (cw * .97);
+        this.height 	 = h || this.height || (ch * .97);
 		this.centerWidth 	 = cw * .5;
 		this.centerHeight 	 = ch * .5;
 
@@ -243,6 +243,7 @@ Gesso.assets = {
 			'objects/Gesso.point.js',
 			'objects/Gesso.text.js',
 			'objects/Gesso.Gamepad.js',
+			'objects/Gesso.circle.js',
 			//'lib/Stage.js',
 			//'lib/Map.js',
 			// 'lib/Inputs.js',
