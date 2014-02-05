@@ -103,10 +103,15 @@ var Gesso = function() {
 	};
 
 	this.setupCanvas = function(name, w, h){
-        this.width 		 = w || this.width || (window.screen.availWidth * .9);
-        this.height 	 = h || this.height || (window.screen.availHeight * .9);
-		this.centerWidth 	 = this.width * .5;
-		this.centerHeight 	 = this.height * .5;
+		var e = document.documentElement,
+		    g = document.getElementsByTagName('body')[0],
+		    cw = window.innerWidth || e.clientWidth || g.clientWidth,
+		    ch = window.innerHeight|| e.clientHeight|| g.clientHeight;
+
+        this.width 		 = w || this.width || (cw * .9);
+        this.height 	 = h || this.height || (ch * .9);
+		this.centerWidth 	 = cw * .5;
+		this.centerHeight 	 = ch * .5;
 
 		var dpr, 
 			width    = this.width, 

@@ -18,8 +18,8 @@
 		constructor: function(gesso, config) {
 			GamepadPoint.Super.call(this, gesso, config);
 			// this.data = new Object();
-			// this.data.x = this.x;
-			// this.data.y = this.y;
+			this.x = gesso.centerWidth;
+			this.y = gesso.centerHeight;
 			//this.data.lineWidth = this.lineWidth;
 			//this.data.fillStyle = this.fillStyle;
 			this.setup()
@@ -86,7 +86,7 @@
 
 			gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
 			    // e.axis changed to value e.value for gamepad e.gamepad
-			    console.log(e.axis, e.value);
+			    // console.log(e.axis, e.value);
 			    self.act[e.axis] = e.value
 			});
 		},
