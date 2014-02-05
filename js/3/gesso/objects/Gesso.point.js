@@ -16,10 +16,11 @@
 
 		constructor: function(gesso, config) {
 			Point.Super.call(this, gesso, config);
+			// this.data = new Object();
 			this.data.x = this.x;
 			this.data.y = this.y;
+
 		},
-		
 		/**
 		 * The step method is isolated from the main scope of the
 		 * class. This is to ensure the Flywieght design of the method doesn't

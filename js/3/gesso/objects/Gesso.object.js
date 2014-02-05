@@ -13,17 +13,32 @@
 		If a Class extends this, it can be drawn. 
 	*/
 	var DrawObject = G.Class({
+	    
+	    /*
+	    Values provided to every class inheriting this entity. All 
+	    objects extending DrawObject can access this entity and view variables
+	    of each. 
+	     */
+		globals: {
+
+		}
+
 		constructor: function(gesso, config) {
 			if(!gesso) {
 				return undefined
-			}
+			};
+
 			this.gesso = gesso;
+
+			/*
+			Create a new object. this will live within the scope
+			of the object.
+			 */
+			this.data = new Object();
 
 			this.addToDrawLayer(gesso.stage, gesso.steps);
 			return this;
 	    },
-	    data: {},
-		
 		/**
 		 * receive a context to draw an object. at it's basic entity. this 
 		 * entity needed to add to a Gesso display object.
