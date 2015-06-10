@@ -34,26 +34,43 @@ var Character = function(){
 
 var _loader = function(){
 	
-	world.agents.character({
-		followMouse: true	
-	})
+
 	spawnSetup()
 }
 
+
 var spawnSetup = function(){
-	world.agents.spawn(10, 'walker', { 
-		bounciness: .1, 
-		maxSteeringForce: 360, 
-		checkEdges: false, 
-		motorSpeed: 2, 
-		minSpeed: 1, 
-		maxSpeed: 9,
-		color: [20,20,20],
-		borderWidth: 1,
-		width: 5,
-		height: 5,
-		borderColor: [2,60,100] 
+	world.agents.spawn(100, 'walker', { 
+		bounciness: .1
+		, maxSteeringForce: 360
+		, checkEdges: false
+		, motorSpeed: 2
+		, minSpeed: 1
+		, maxSpeed: 9
+		, color: [20,20,20]
+		, borderWidth: 1
+		, width: 5
+		, height: 5
+		, borderColor: [2,60,100] 
+		, followMouse: true
 	});
+
+	world.agents.spawn(10, 'character', { 
+		bounciness: .1
+		, maxSteeringForce: 360
+		, checkEdges: false
+		, motorSpeed: 2
+		, minSpeed: 1
+		, maxSpeed: 9
+		, color: [90,120,120]
+		, borderWidth: 1
+		, width: 5
+		, height: 5
+		//, borderColor: [2,60,100] 
+		, followMouse: true
+	});
+
+
 }
 
 world = {
@@ -74,6 +91,7 @@ world = {
 			};
 			return returns
 		}, 
+
 		walkers: [],
 
 		walker: function(){
